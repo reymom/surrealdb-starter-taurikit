@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SurrealDB-Tauri Starter Kit
+
+This is a Starter Kit for [SurrealDB](https://surrealdb.com/) using [Tauri App](https://tauri.app/) with [Next.js](https://nextjs.org/). This app is intended to provide a built-in environment with this technologies combinations, with some assumptions on the structure which should be overriden by personal preferences.
+
+It initializes a store interface with some basic implementations for a simple struct, with some mapping and organization layers. It also sets up the bindings to export the type interfaces to the frontend and be able to communicate back-and-forth through an ICP layer.
+
+Finally, it sets up a simple react frontend without any UI framework, but with all the necessari connections ready-to use. The user can add and delete `Person`s and see the list of them.
+
+## Requirements:
+
+- Be sure to have [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
+
+- Please refer to the prerequisites for using [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites/).
+
+- Node.js > v18
 
 ## Getting Started
 
@@ -22,51 +36,8 @@ Build the app
 cargo tauri build
 ```
 
-SurrealDB it is run as an in-memory database, by enabling the following feature:
+## Persistent storage
 
-`./src-tauri/Cargo.toml`
+> Note: SurrealDB is run as an in-memory database. To enable persitent storage, edit the `src-tauri/Cargo.toml` to enable all `surrealdb` features.
 
-```toml
-[dependencies]
-surrealdb = { version = "1.0.0", default-features = false, features = ["kv-mem"] }
-```
-
-And using:
-
-```rust
-use surrealdb::engine::local::Mem;
-use surrealdb::Surreal;
-
-#[tokio::main]
-async fn main() -> surrealdb::Result<()> {
-    // Create database connection
-    let db = Surreal::new::<Mem>(()).await?;
-
-    // Select a specific namespace / database
-    db.use_ns("test").use_db("test").await?;
-}
-```
-
-To use a server, we need to switch to:
-
-```rust
-use surrealdb::engine::remote::ws::Ws;
-use surrealdb::opt::auth::Root;
-use surrealdb::Surreal;
-
-#[tokio::main]
-async fn main() -> surrealdb::Result<()> {
-    // Connect to the server
-    let db = Surreal::new::<Ws>("127.0.0.1:8000").await?;
-
-    // Signin as a namespace, database, or root user
-    db.signin(Root {
-        username: "root",
-        password: "root",
-    })
-    .await?;
-
-    // Select a specific namespace / database
-    db.use_ns("test").use_db("test").await?;
-}
-```
+> Refer to [src-tauri/Readme.md](https://github.com/reymom/src-tauri#persistent-storage) for further information.
