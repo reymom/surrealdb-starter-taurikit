@@ -1,5 +1,25 @@
 # src-tauri
 
+### MAIN COMMANDS
+
+- Build
+
+```sh
+cargo build
+```
+
+- Generate frontend type bindings
+
+```sh
+cd src-tauri && cargo 'test' '--package' 'surrealdb-starter-taurikit' '--bin' 'surrealdb-starter-taurikit' '--' 'model::types'
+```
+
+- Test store implementations
+
+```sh
+cargo test --package surrealdb-starter-taurikit --bin surrealdb-starter-taurikit -- model::store::tests --nocapture
+```
+
 ### DEVELOPMENT OVERVIEW
 
 ```bash
@@ -36,12 +56,6 @@ The modules are organised as followed:
   - IpcResponse with the JSON-RPC 2.0 result/error
 
 Further modularization should be conducted, specially if extending the functionality of the application when adding more tables and corresponding type conversions.
-
-### TEST SURREAL STORE IMPLEMENTATIONS
-
-```sh
-cargo test --package surrealdb-starter-taurikit --bin surrealdb-starter-taurikit -- model::store::tests --nocapture
-```
 
 ### PERSISTENT STORAGE
 

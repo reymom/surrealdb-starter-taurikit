@@ -1,39 +1,51 @@
-# SurrealDB-Tauri Starter Kit
+# Starter Kit for SurrealDB + Tauri + Next.js
 
-This is a Starter Kit for [SurrealDB](https://surrealdb.com/) using [Tauri App](https://tauri.app/) with [Next.js](https://nextjs.org/). This app is intended to provide a built-in environment with this technologies combinations, with some assumptions on the structure which should be overriden by personal preferences.
+This starter kit provides a streamlined setup for developing a [Tauri App](https://tauri.app/) + [Next.js](https://nextjs.org/) applications with an integrated [SurrealDB](https://surrealdb.com/) database. It bridges the frontend with the backend using an ICP command layer following the JSON-RPC 2.0 format.
 
-It initializes a store interface with some basic implementations for a simple struct, with some mapping and organization layers. It also sets up the bindings to export the type interfaces to the frontend and be able to communicate back-and-forth through an ICP layer.
+## Features
 
-Finally, it sets up a simple react frontend without any UI framework, but with all the necessari connections ready-to use. The user can add and delete `Person`s and see the list of them.
+- Tauri Backend: Set up a backend using Tauri, a framework to build desktop applications with any frontend framework and a Rust core.
 
-## Requirements:
+- Next.js Frontend: Create dynamic and responsive user interfaces with Next.js, a popular React framework.
+
+- JSON-RPC 2.0 Communication: Seamless communication between frontend and backend using JSON-RPC 2.0 protocol.
+
+- SurrealDB Integration: Easily connect your backend with SurrealDB, a multi-model database that makes building and scaling realtime apps dramatically quicker and easier.
+
+## Prerequisites:
 
 - Be sure to have [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
 
 - Please refer to the prerequisites for using [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites/).
 
-- Node.js > v18
+- [Node.js](https://nodejs.org/en/download) > v18
 
 ## Getting Started
 
-Run the development server:
+1. Clone the Repository:
 
 ```bash
+git clone git@github.com:reymom/surrealdb-starter-taurikit.git
+```
+
+2. Backend Setup
+
+- Navigate to the backend directory `src-tauri`.
+- Follow the [README](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#main-commands) to (1) build the rust application and (2) **generate the frontend bindings**.
+- To customizing your types and method implementations, refer to the backend README [README](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#development-overview).
+
+3. Frontend Setup
+
+- In the main directory, install the dependencies:
+
+```bash
+npm install
+```
+
+- Run the Tauri - Next.js development server:
+
+```
 cargo tauri dev
-```
-
-## Building
-
-First, to create the type bindings defined in the backend model, you need to run:
-
-```sh
-cd src-tauri && cargo 'test' '--package' 'surrealdb-starter-taurikit' '--bin' 'surrealdb-starter-taurikit' '--' 'model::types' '--nocapture'
-```
-
-Build the app
-
-```bash
-cargo tauri build
 ```
 
 ## Persistent storage
@@ -41,3 +53,9 @@ cargo tauri build
 > Note: SurrealDB is run as an in-memory database. To enable persitent storage, edit the `src-tauri/Cargo.toml` to enable all `surrealdb` features.
 
 > Refer to [src-tauri/Readme.md](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#persistent-storage) for further information.
+
+## Contributing
+
+If you find any issues or have suggestions for improvements, please feel free to open an issue or create a pull request.
+
+Happy coding!
