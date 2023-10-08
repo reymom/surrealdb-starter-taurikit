@@ -8,7 +8,6 @@ use std::sync::Arc;
 
 mod error;
 mod ipc;
-mod macros;
 mod model;
 
 #[tokio::main]
