@@ -1,8 +1,22 @@
 "use client";
 
 import styles from './page.module.css'
-import { ListPerson, AddPerson } from "@/app/components"
 import { useState } from "react"
+import dynamic from 'next/dynamic'
+
+//we need to import dynamically the components that call the tauri invoke as a workaround
+//to avoid the `no window found` error due to nextjs running a Node.js server for SSR
+const ListPerson = dynamic(
+    () => import("@/app/components/ListPerson").then(
+        (mod) => mod.ListPerson
+    ), { ssr: false }
+)
+const AddPerson = dynamic(
+    () => import("@/app/components/AddPerson").then(
+        (mod) => mod.AddPerson
+    ), { ssr: false }
+)
+
 
 export default function Home() {
     //effectful state
