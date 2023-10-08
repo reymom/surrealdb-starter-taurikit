@@ -11,15 +11,15 @@ rust-version = "1.72"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.4.1", features = [] }
+tauri-build = { version = "1.5.0", features = [] }
 
 [dependencies]
-tokio = { version = "1", features = ["full"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_with_macros = "3"
 tauri = { version = "1.5.0", features = [] }
-surrealdb = {version = "1.0.0-beta.9", default-features=false, features = ['kv-mem'] }
+surrealdb = { version = "1.0.0", default-features = false, features = ["kv-mem"] }
 ts-rs = { version = "7" }
 
 [dev-dependencies]
