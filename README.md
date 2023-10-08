@@ -2,19 +2,24 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 cargo tauri dev
-
 ```
 
 ## Building
 
-To create the type bindings defined in the backend model, you need to run:
+First, to create the type bindings defined in the backend model, you need to run:
 
 ```sh
-cargo test
+cd src-tauri && cargo 'test' '--package' 'surrealdb-starter-taurikit' '--bin' 'surrealdb-starter-taurikit' '--' 'model::types' '--nocapture'
+```
+
+Build the app
+
+```bash
+cargo tauri build
 ```
 
 SurrealDB it is run as an in-memory database, by enabling the following feature:
