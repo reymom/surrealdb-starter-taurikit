@@ -32,7 +32,7 @@ git clone git@github.com:reymom/surrealdb-starter-taurikit.git
 
 - Navigate to the backend directory `src-tauri`.
 - Follow the [README](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#main-commands) to (1) build the rust application and (2) **generate the frontend bindings**.
-- To an overview on where to create and customize your types and method implementations, refer to the backend README [README](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#development-overview).
+- To an overview on where to create and customize your types and method implementations, refer to the backend [README](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#development-overview).
 
 3. Frontend Setup
 
