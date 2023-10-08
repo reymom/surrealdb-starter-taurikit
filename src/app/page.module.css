@@ -94,3 +94,24 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.pagination {
+  /* display: inline-block; */
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.pageButton {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.pageButton:hover {
+  background-color: #ddd;
+}
