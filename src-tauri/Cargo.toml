@@ -2,9 +2,9 @@
 name = "surrealdb-starter-taurikit"
 version = "0.1.0"
 description = "A starter-kit project from which to create your Tauri + SurrealDB projects"
-authors = ["reymon"]
+authors = ["reymom"]
 license = ""
-repository = ""
+repository = "https://github.com/reymom/surrealdb-starter-taurikit"
 edition = "2021"
 rust-version = "1.72"
 

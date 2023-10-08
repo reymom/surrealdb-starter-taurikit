@@ -55,10 +55,8 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
         "resizable": true,
-        "title": "surrealdb-starter-taurikit",
-        "width": 800
+        "title": "surrealdb-starter-taurikit"
       }
     ]
   }
