@@ -1,7 +1,6 @@
 use super::{CreateParams, DeleteParams, GetParams, IpcResponse, ListParams, UpdateParams};
-use crate::model::types::{Page, Person, PersonController, PersonForCreate, PersonForUpdate};
+use crate::model::types::{Person, PersonController, PersonForCreate, PersonForUpdate};
 use crate::model::Store;
-use crate::Error;
 use std::sync::Arc;
 use tauri::{command, AppHandle, Manager, Wry};
 
