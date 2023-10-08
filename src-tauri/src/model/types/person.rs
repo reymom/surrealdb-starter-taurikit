@@ -4,11 +4,12 @@ use crate::{Error, Result, Store};
 
 use serde::{Deserialize, Serialize};
 use serde_with_macros::skip_serializing_none;
-use std::sync::Arc;
 use ts_rs::TS;
 
-#[cfg_attr(test, derive(PartialEq))]
-#[derive(Debug, Serialize, Deserialize, TS)]
+use std::sync::Arc;
+
+#[cfg_attr(test, derive(PartialEq, Clone))]
+#[derive(Debug, Deserialize, Serialize, TS)]
 #[ts(export, export_to = "../src/bindings/")]
 pub struct Name {
     pub first: String,
@@ -25,6 +26,7 @@ pub struct Person {
     pub marketing: bool,
 }
 
+#[cfg_attr(test, derive(Clone))]
 #[derive(Debug, Deserialize)]
 pub struct PersonMapping {
     pub id: IdWrapper,
@@ -51,7 +53,7 @@ impl TryFrom<PersonMapping> for Person {
 }
 
 #[skip_serializing_none]
-#[derive(Serialize, Deserialize, TS, Debug)]
+#[derive(Debug, Deserialize, Serialize, TS)]
 #[ts(export, export_to = "../src/bindings/")]
 pub struct PersonForCreate {
     pub title: String,
@@ -62,7 +64,7 @@ pub struct PersonForCreate {
 impl Creatable for PersonForCreate {}
 
 #[skip_serializing_none]
-#[derive(Serialize, Deserialize, TS, Debug)]
+#[derive(Debug, Deserialize, Serialize, TS)]
 #[ts(export, export_to = "../src/bindings/")]
 pub struct PersonForUpdate {
     pub title: Option<String>,

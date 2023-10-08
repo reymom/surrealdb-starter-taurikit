@@ -5,13 +5,16 @@ use surrealdb::sql::Thing;
 use ts_rs::TS;
 
 // Record is used to deserialize returned ids
-#[derive(Debug, Serialize, Deserialize)]
+#[cfg_attr(test, derive(PartialEq))]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Record {
     #[allow(dead_code)]
     pub id: IdWrapper,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+// IdWrapper is used for the id in PersonMapping
+#[cfg_attr(test, derive(Clone, PartialEq))]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct IdWrapper(Thing);
 
 impl IdWrapper {
