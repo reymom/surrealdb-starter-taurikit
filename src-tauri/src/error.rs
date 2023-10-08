@@ -4,9 +4,13 @@ pub type Result<T> = std::result::Result<T, Error>;
 pub enum Error {
     Surreal(surrealdb::Error),
     StoreFailToCreate(String),
+    StoreFailToPatch {
+        method: String,
+        tb: String,
+        tid: String,
+    },
     ErrGettingStore,
     ErrLimitOutOfBonds,
-    XPropertyNotFound(String),
     XValueNotFound(String),
     XValueNotOfType(&'static str),
 }
@@ -19,7 +23,12 @@ impl From<surrealdb::Error> for Error {
 
 impl std::fmt::Display for Error {
     fn fmt(&self, fmt: &mut std::fmt::Formatter) -> core::result::Result<(), std::fmt::Error> {
-        write!(fmt, "{self:?}")
+        match self {
+            Error::StoreFailToPatch { method, tb, tid } => {
+                write!(fmt, "error in {method} for {tb}:{tid}")
+            }
+            _ => write!(fmt, "{self:?}"),
+        }
     }
 }
 
