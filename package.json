@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.3",
-    "tslog": "^4.9.2",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
