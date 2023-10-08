@@ -9,6 +9,7 @@ use surrealdb::sql::{Object, Value};
 pub use store::{Creatable, Patchable};
 pub use try_from::W;
 
+// wrap the store to control granular exposure of internal methods
 pub struct Store(SurrealStore);
 
 impl Store {
