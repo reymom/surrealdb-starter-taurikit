@@ -1,45 +1,39 @@
 use crate::{Error, Result};
+
 use serde::{Deserialize, Serialize};
-use serde_with_macros::skip_serializing_none;
-use std::collections::BTreeMap;
-use std::sync::Arc;
-use surrealdb::sql::{Object, Thing, Value};
+use surrealdb::sql::Thing;
 use ts_rs::TS;
 
 // Record is used to deserialize returned ids
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Record {
     #[allow(dead_code)]
-    pub id: Thing,
+    pub id: IdWrapper,
 }
 
-impl Record {
-    pub fn get_table(&self) -> &str {
-        &self.id.tb
-    }
+#[derive(Debug, Serialize, Deserialize)]
+pub struct IdWrapper(Thing);
 
+impl IdWrapper {
     pub fn get_id(&self) -> String {
-        self.id.id.to_raw()
+        self.0.id.to_raw()
     }
 
     pub fn get_full_id(&self) -> String {
-        self.id.to_raw()
+        self.0.to_raw()
     }
 }
 
 const PAGE_LIMIT: u8 = 100;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, TS)]
+#[ts(export, export_to = "../src/bindings/")]
 pub struct Page {
-    limit: u8,
-    page: u32,
+    pub limit: u8,
+    pub page: u32,
 }
 
 impl Page {
-    pub fn new(limit: u8, page: u32) -> Self {
-        Page { limit, page }
-    }
-
     pub fn get_limit(&self) -> Result<u8> {
         if self.limit > PAGE_LIMIT {
             return Err(Error::ErrLimitOutOfBonds);

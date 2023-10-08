@@ -1,5 +1,5 @@
+mod general;
 mod person;
-mod types;
 
+pub use general::{IdWrapper, Page, Record};
 pub use person::{Name, Person, PersonController, PersonForCreate, PersonForUpdate, PersonMapping};
-pub use types::{Page, Record};
