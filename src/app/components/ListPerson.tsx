@@ -2,7 +2,7 @@
 
 import styles from '../page.module.css';
 import { useState, useEffect } from "react";
-import { Person } from "@/bindings";
+import { Person, Page } from "@/bindings";
 import { personController } from "@/api/api";
 
 interface Props {
@@ -10,23 +10,31 @@ interface Props {
 }
 
 export const ListPerson = ({ reRender }: Props) => {
+    const ITEMS_PER_PAGE = 10;
+
     const [personList, setPersonList] = useState<Person[]>([]);
     const [removed, setRemoved] = useState<boolean>(false); //effectful state
+    const [page, setPage] = useState<Page>({ page: 0, limit: ITEMS_PER_PAGE });
 
     useEffect(() => {
         const listPerson = async () => {
-            personController.list().then(
+            personController.list(page).then(
                 (result) => { setPersonList(result) },
                 (reason) => { console.error("list call rejected: ", reason) },
             )
         }
         listPerson();
-    }, [reRender, removed]);
+    }, [reRender, removed, page]);
+
+    useEffect(() => {
+        if ((personList.length == 0) && (page.page > 0)) {
+            setPage({ ...page, page: page.page - 1 })
+        }
+    }, [personList, page])
 
     const deletePerson = async (id: string) => {
-        let splitted = id.split(":");
         try {
-            let person_id = await personController.delete(splitted[1]);
+            let person_id = await personController.delete(id);
             setRemoved(!removed);
         } catch (e) {
             console.error("error = ", e)
@@ -35,6 +43,21 @@ export const ListPerson = ({ reRender }: Props) => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.pagination}>
+                <button className={styles.pageButton} onClick={() => {
+                    if (page.page > 0) {
+                        setPage({ ...page, page: page.page - 1 })
+                    }
+                }}>&laquo;</button>
+                <button className={styles.pageButton} style={{ pointerEvents: "none", backgroundColor: "white" }} disabled>
+                    {page.page + 1}
+                </button>
+                <button className={styles.pageButton} onClick={() => {
+                    if (personList.length >= ITEMS_PER_PAGE) {
+                        setPage({ ...page, page: page.page + 1 })
+                    }
+                }}>&raquo;</button>
+            </div>
             <table className={styles.personListTable}>
                 <thead>
                     <tr>

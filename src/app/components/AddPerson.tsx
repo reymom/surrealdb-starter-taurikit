@@ -23,7 +23,7 @@ export const AddPerson = ({ onCreate }: Props) => {
                 setPerson({ ...person, marketing: !person.marketing });
                 break;
             }
-            default: console.log("target name does not match any property of person"); break;
+            default: console.error("target name does not match any property of person"); break;
         }
     }
 
