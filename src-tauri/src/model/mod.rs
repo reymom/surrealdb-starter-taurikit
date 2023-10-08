@@ -3,7 +3,6 @@ pub mod types;
 
 use crate::Result;
 use store::SurrealStore;
-
 pub use store::{Castable, Creatable, Patchable};
 
 // wrap the store to control granular exposure of internal methods

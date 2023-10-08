@@ -1,8 +1,10 @@
 use super::{CreateParams, DeleteParams, GetParams, IpcResponse, ListParams, UpdateParams};
 use crate::model::types::{Person, PersonController, PersonForCreate, PersonForUpdate};
 use crate::model::Store;
-use std::sync::Arc;
+
 use tauri::{command, AppHandle, Manager, Wry};
+
+use std::sync::Arc;
 
 #[command]
 pub async fn get_person(app: AppHandle<Wry>, params: GetParams) -> IpcResponse<Person> {

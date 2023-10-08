@@ -1,6 +1,6 @@
-use serde::Deserialize;
-
 use crate::model::types::Page;
+
+use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct CreateParams<D> {
@@ -14,16 +14,16 @@ pub struct UpdateParams<D> {
 }
 
 #[derive(Deserialize)]
+pub struct DeleteParams {
+    pub id: String,
+}
+
+#[derive(Deserialize)]
 pub struct ListParams {
     pub page: Option<Page>,
 }
 
 #[derive(Deserialize)]
 pub struct GetParams {
-    pub id: String,
-}
-
-#[derive(Deserialize)]
-pub struct DeleteParams {
     pub id: String,
 }

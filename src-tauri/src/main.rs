@@ -2,8 +2,8 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 pub use error::{Error, Result};
-
 use model::Store;
+
 use std::sync::Arc;
 
 mod error;
