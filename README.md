@@ -40,4 +40,4 @@ cargo tauri build
 
 > Note: SurrealDB is run as an in-memory database. To enable persitent storage, edit the `src-tauri/Cargo.toml` to enable all `surrealdb` features.
 
-> Refer to [src-tauri/Readme.md](https://github.com/reymom/src-tauri#persistent-storage) for further information.
+> Refer to [src-tauri/Readme.md](https://github.com/reymom/surrealdb-starter-taurikit/tree/develop/src-tauri#persistent-storage) for further information.
