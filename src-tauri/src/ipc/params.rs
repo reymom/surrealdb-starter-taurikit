@@ -1,5 +1,7 @@
 use serde::Deserialize;
 
+use crate::model::types::Page;
+
 #[derive(Deserialize)]
 pub struct CreateParams<D> {
     pub data: D,
@@ -13,8 +15,7 @@ pub struct UpdateParams<D> {
 
 #[derive(Deserialize)]
 pub struct ListParams {
-    pub limit: Option<i64>,
-    pub offset: Option<i64>,
+    pub page: Option<Page>,
 }
 
 #[derive(Deserialize)]
