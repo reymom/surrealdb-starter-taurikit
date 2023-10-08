@@ -1,16 +1,18 @@
-pub type Result<T> = core::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug)]
 pub enum Error {
-    Surreal(surrealdb::err::Error),
+    Surreal(surrealdb::Error),
     StoreFailToCreate(String),
     ErrGettingStore,
+    ErrLimitOutOfBonds,
     XPropertyNotFound(String),
+    XValueNotFound(String),
     XValueNotOfType(&'static str),
 }
 
-impl From<surrealdb::err::Error> for Error {
-    fn from(val: surrealdb::err::Error) -> Self {
+impl From<surrealdb::Error> for Error {
+    fn from(val: surrealdb::Error) -> Self {
         Error::Surreal(val)
     }
 }
