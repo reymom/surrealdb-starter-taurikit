@@ -8,11 +8,11 @@
 
 import { invoke } from "@tauri-apps/api";
 
-export async function ipc_invoke(cmd: string, args?: object): Promise<any> {
-  //   const invoke = await import("@tauri-apps/api");
-
-  const response: any = await invoke(cmd, { args });
-
+export async function ipc_invoke(
+  method: string,
+  params?: object
+): Promise<any> {
+  const response: any = await invoke(method, { params });
   if (response.error != null) {
     throw new Error(response.error);
   } else {

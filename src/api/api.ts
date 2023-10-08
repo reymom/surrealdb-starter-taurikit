@@ -1,5 +1,5 @@
 import { ipc_invoke } from "./ipc";
-import { Person, PersonForCreate, PersonForUpdate } from "@/bindings";
+import { Page, Person, PersonForCreate, PersonForUpdate } from "@/bindings";
 
 class Controller<M, C, U> {
   suffix: string;
@@ -13,7 +13,6 @@ class Controller<M, C, U> {
   }
 
   async create(data: C): Promise<String> {
-    console.log("create data = ", data);
     return ipc_invoke(`create_${this.suffix}`, { data }).then((res) => {
       return res.data;
     });
@@ -39,8 +38,8 @@ class PersonController extends Controller<
     super("person");
   }
 
-  async list(): Promise<Person[]> {
-    return ipc_invoke(`list_${this.suffix}s`, {}).then((res) => res.data);
+  async list(page: Page): Promise<Person[]> {
+    return ipc_invoke(`list_${this.suffix}s`, { page }).then((res) => res.data);
   }
 }
 export const personController = new PersonController();
