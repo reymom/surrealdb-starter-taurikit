@@ -19,6 +19,8 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_with_macros = "3"
 tauri = { version = "1.5.0", features = [] }
+# For dev and easy to go first experience, we set up an in-memory surrealdb for now.
+# Remove `default-features=false, features = ...` to enable persistent storage.
 surrealdb = { version = "1.0.0", default-features = false, features = ["kv-mem"] }
 ts-rs = { version = "7" }
 

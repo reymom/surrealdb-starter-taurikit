@@ -11,7 +11,7 @@ cargo build
 - Generate frontend type bindings
 
 ```sh
-cd src-tauri && cargo 'test' '--package' 'surrealdb-starter-taurikit' '--bin' 'surrealdb-starter-taurikit' '--' 'model::types'
+cargo 'test' '--package' 'surrealdb-starter-taurikit' '--bin' 'surrealdb-starter-taurikit' '--' 'model::types'
 ```
 
 - Test store implementations
@@ -59,9 +59,9 @@ Further modularization should be conducted, specially if extending the functiona
 
 ### PERSISTENT STORAGE
 
-SurrealDB is run as an in-memory database, by enabling the following feature:
+SurrealDB is run as an [in-memory database](https://surrealdb.com/docs/embedding/rust), by enabling the following feature:
 
-`./src-tauri/Cargo.toml`
+`./Cargo.toml`
 
 ```toml
 [dependencies]
@@ -84,7 +84,16 @@ async fn main() -> surrealdb::Result<()> {
 }
 ```
 
-To use a server, we need to switch to:
+To use a server, we need to enable all the surrealdb features:
+
+`./Cargo.toml`
+
+```toml
+[dependencies]
+surrealdb = "1.0.0"
+```
+
+Thus:
 
 ```rust
 use surrealdb::engine::remote::ws::Ws;
