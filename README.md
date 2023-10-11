@@ -18,6 +18,12 @@ This starter kit provides a streamlined setup for developing a [Tauri App](https
 
 - Please refer to the prerequisites for using [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites/).
 
+- To use the Tauri CLI from source (bleeding edge version) you need to install it via:
+
+```bash
+cargo install --git https://github.com/tauri-apps/tauri --branch 1.x tauri-cli
+```
+
 - [Node.js](https://nodejs.org/en/download) > v18
 
 ## Getting Started
