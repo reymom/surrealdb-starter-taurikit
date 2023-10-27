@@ -1,7 +1,7 @@
 "use client";
 
 import styles from '../page.module.css';
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { PersonForCreate } from "@/bindings";
 import { personController } from "@/api/api";
 

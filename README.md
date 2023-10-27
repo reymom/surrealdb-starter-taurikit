@@ -2,6 +2,8 @@
 
 This starter kit provides a streamlined setup for developing a [Tauri App](https://tauri.app/) + [Next.js](https://nextjs.org/) applications with an integrated [SurrealDB](https://surrealdb.com/) database. It bridges the frontend with the backend using an ICP command layer following the JSON-RPC 2.0 format.
 
+![surrealdb-starter-taurikit](media/surrealdb-starter-taurikit.png)
+
 ## Features
 
 - Tauri Backend: Set up a backend using Tauri, a framework to build desktop applications with any frontend framework and a Rust core.
